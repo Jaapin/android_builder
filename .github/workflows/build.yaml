@@ -13,15 +13,15 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Set Up gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 7.4.1
       - id: get-project
         name: Get project name
         run: echo "::set-output name=PROJECT::$(cat project-to-build)"
       - name: Clone project
         run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
+      - name: Set Up gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 7.4.1
       - name: Build the app
         working-directory: ./project
         run: |
