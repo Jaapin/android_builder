@@ -20,8 +20,9 @@ jobs:
         run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
       - name: Set Up gradle
         uses: gradle/gradle-build-action@v2.6.1
-      - name: Build the app
+      - name: cd dir
         working-directory: ./project
+      - name: Build APP
         run: |
           if [ ! -f "gradlew" ]; then gradle wrapper; fi
           chmod +x gradlew
